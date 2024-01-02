@@ -1,0 +1,35 @@
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+### Node ###
+# Logs
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+#Config
+config/xray/jira.cloud.json
+
+#Features backup
+test/features/*_backup
+
+#Resources
+test/resources/files/walletData.json
+
+# Reports
+allure-report
+test/reports/
+
+# Optional npm cache directory
+.npm
+
+# Others
+driver-logs/
+logs_appium/
+tmp/
+browserstack.err
+local.log
+test/features/_*LivingDocumentation_bkp

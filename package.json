@@ -1,0 +1,50 @@
+{
+  "name": "cucumber-wdio",
+  "version": "1.0.2",
+  "description": "Run native automation for web, android and ios using cucumber wdio with page object pattern",
+  "config": {
+    "cucumberConfig": "config/xray/cucumber.config.json",
+    "jsonReportsDirectory": "test/reports/mobile/cucumber/json"
+  },
+  "scripts": {
+    "chrome": "wdio config/chrome.conf.js",
+    "test:android:local": "wdio config/android.local.conf.js",
+    "test:ios:browserstack": "wdio config/browserstack/ios.bs.conf.js --parallel=true",
+    "cucumber:download_features": "npx run-func ./node_modules/@xray-app/xray-automation/src/helpers/xray-helper.js downloadCucumberFeatures $npm_package_config_cucumberConfig",
+    "cucumber:upload_features": "npx run-func ./node_modules/@xray-app/xray-automation/src/helpers/xray-helper.js uploadCucumberFeatures $npm_package_config_cucumberConfig",
+    "report:merge_json_files": "npx run-func node_modules/wdio-common/lib/merge-reports.js mergeJsonReports $npm_package_config_jsonReportsDirectory",
+    "cucumber:submit_results": "npx run-func ./node_modules/@xray-app/xray-automation/src/helpers/xray-helper.js submitCucumberTestResults test/reports/mobile/cucumber/json/merged_output_report.json $npm_package_config_cucumberConfig",
+    "allure:report_mobile": "./node_modules/.bin/allure generate --clean 'test/reports/mobile/allure-results' && allure open",
+    "allure:report_web": "./node_modules/.bin/allure generate --clean 'test/reports/web/allure-results' && allure open"
+  },
+  "lint-staged": {
+    "test/**/*.js": "eslint --fix"
+  },
+  "keywords": [
+    "appium",
+    "cucumber",
+    "webdriverio",
+    "wdio",
+    "mobile automation"
+  ],
+  "author": "jormel",
+  "license": "ISC",
+  "devDependencies": {
+    "@wdio/cli": "^7.25.4",
+    "@wdio/cucumber-framework": "^7.25.4",
+    "@wdio/local-runner": "^7.25.4",
+    "allure-commandline": "^2.18.1",
+    "eslint": "^7.3.0",
+    "wdio-chromedriver-service": "^7.3.2",
+    "webdriverio": "^7.25.4"
+  },
+  "dependencies": {
+    "@wdio/codemod": "^0.12.0",
+    "chai": "^4.3.7",
+    "chromedriver": "^120.0.1",
+    "fix-esm": "^1.0.1",
+    "jscodeshift": "^0.14.0",
+    "run-func": "^3.0.0",
+    "wdio-cucumberjs-json-reporter": "^5.1.8"
+  }
+}
